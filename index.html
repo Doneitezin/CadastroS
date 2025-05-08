@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Pessoas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Pessoas</h1>
+        <form id="cadastroForm">
+            <input type="text" id="nome" placeholder="Nome" required>
+            <input type="number" id="idade" placeholder="Idade" required>
+            <select id="sexo" required>
+                <option value="">Selecione o sexo</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+            </select>
+            <input type="text" id="cidade" placeholder="Cidade" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <h2>Pessoas Cadastradas</h2>
+        <table id="tabela">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Sexo</th>
+                    <th>Cidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Cadastros vão aparecer aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const form = document.getElementById('cadastroForm');
+        const tabela = document.getElementById('tabela').querySelector('tbody');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const sexo = document.getElementById('sexo').value;
+            const cidade = document.getElementById('cidade').value;
+
+            const novaLinha = tabela.insertRow();
+
+            novaLinha.innerHTML = `
+                <td>${nome}</td>
+                <td>${idade}</td>
+                <td>${sexo}</td>
+                <td>${cidade}</td>
+            `;
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
